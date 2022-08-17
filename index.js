@@ -2,10 +2,12 @@ const express = require("express");
 const app = express();
 const axios = require("axios");
 const cors = require("cors");
+const dotenv = require("dotenv").config();
 const NAVER_ID = process.env.NAVER_ID;
 const NAVER_SECRET_ID = process.env.NAVER_SECRET_ID;
-
-app.set("port", 8099);
+app.set("port", process.env.PORT || 8099);
+const port = app.get("port");
+// app.set("port", 8099);
 app.use(cors());
 
 // 라우팅
@@ -100,6 +102,6 @@ app.get("/login", (req, res) => {
   }
 });
 
-app.listen(8099, function () {
-  console.log("8099에서 서버 대기중");
+app.listen(port, function () {
+  console.log(`${port}에서 서버 대기중`);
 });
