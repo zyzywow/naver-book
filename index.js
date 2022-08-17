@@ -6,8 +6,8 @@ const cors = require("cors");
 const dotenv = require("dotenv").config();
 const NAVER_ID = process.env.NAVER_ID;
 const NAVER_SECRET_ID = process.env.NAVER_SECRET_ID;
-const port = app.get("port");
 app.set("port", process.env.PORT || 8099);
+const PORT = app.get("port");
 // app.set("port", 8099);
 app.use(cors());
 
@@ -103,6 +103,6 @@ app.get("/login", (req, res) => {
   }
 });
 
-app.listen(port, function () {
-  console.log(`${port}에서 서버 대기중`);
+app.listen(PORT, function () {
+  console.log(`${PORT}에서 서버 대기중`);
 });
