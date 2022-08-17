@@ -11,25 +11,33 @@ const PORT = app.get("port");
 // app.set("port", 8099);
 app.use(cors());
 
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
+
 // 라우팅
 app.get("/", (req, res) => {
   res.send("gggggkkkkkkkkddddddddllllllllllll");
 });
 
 // 중간 대리인 역할
-app.get("/book/:bookname", (req, res) => {
+app.post("/book/:bookname", (req, res) => {
   const queryTxt = encodeURIComponent(req.params.bookname);
   // console.log(req.params.bookname);
   axios({
     url: `https://openapi.naver.com/v1/search/book.json?query=${queryTxt}`,
+    method: "POST",
     headers: {
       "X-Naver-Client-Id": NAVER_ID,
       "X-Naver-Client-Secret": NAVER_SECRET_ID,
     },
-  }).then(function (response) {
-    // console.log(response.data);
-    res.json(response.data);
-  });
+  })
+    .then(function (response) {
+      // console.log(response.data);
+      res.json(response.data);
+    })
+    .catch((error) => {
+      res.send(error);
+    });
 });
 // ex))))))))))))))))))))))))))))))))))))))))))
 app.get("/news/:bookname", (req, res) => {
