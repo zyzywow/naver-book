@@ -21,7 +21,8 @@ app.get("/", (req, res) => {
 
 // 중간 대리인 역할
 app.post("/book/:bookname", (req, res) => {
-  const queryTxt = encodeURIComponent(req.params.bookname);
+  // const queryTxt = encodeURIComponent(req.params.bookname);
+  const queryTxt = encodeURIComponent(req.body.bookname);
   // console.log(req.params.bookname);
   axios({
     url: `https://openapi.naver.com/v1/search/book.json?query=${queryTxt}`,
