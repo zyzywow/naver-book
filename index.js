@@ -104,5 +104,5 @@ app.get("/login", (req, res) => {
 });
 
 app.listen(PORT, function () {
-  console.log(`${PORT}에서 서버 대기중`);
+  console.log(`${PORT}에서 서버 대기중0`);
 });
